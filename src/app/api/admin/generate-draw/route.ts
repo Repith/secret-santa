@@ -4,6 +4,8 @@ import { prisma } from "../../../../../src/lib/prisma";
 import { verifyJWT } from "../../../../../src/lib/auth";
 import { GenerateDrawRequest, GenerateDrawResponse } from "@/lib/types";
 
+export const runtime = "nodejs";
+
 export async function POST(request: NextRequest) {
   try {
     const authHeader = request.headers.get("authorization");

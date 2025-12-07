@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifyToken } from "../../../../src/lib/auth";
 import { prisma } from "../../../../src/lib/prisma";
 
+export const runtime = "nodejs";
+
 export async function POST(request: NextRequest) {
   try {
     const { token } = await request.json();

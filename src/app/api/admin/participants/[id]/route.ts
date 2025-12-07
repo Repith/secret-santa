@@ -4,6 +4,8 @@ import { prisma } from "@/lib/prisma";
 import { verifyJWT } from "@/lib/auth";
 import { UpdateParticipantRequest } from "@/lib/types";
 
+export const runtime = "nodejs";
+
 export async function PUT(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> },

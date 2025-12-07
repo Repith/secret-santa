@@ -3,6 +3,8 @@ import { NextResponse, NextRequest } from "next/server";
 import { verifyJWT } from "@/lib/auth";
 import { AdminStatsResponse } from "@/lib/types";
 
+export const runtime = "nodejs";
+
 export async function GET(request: NextRequest) {
   try {
     const authHeader = request.headers.get("authorization");

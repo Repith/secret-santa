@@ -3,6 +3,8 @@ import { prisma } from "../../../../../src/lib/prisma";
 import { generateToken } from "../../../../../src/lib/auth";
 import { sendEmail } from "../../../../../src/lib/email";
 
+export const runtime = "nodejs";
+
 export async function POST(request: NextRequest) {
   try {
     const { email, name, eventId } = await request.json();

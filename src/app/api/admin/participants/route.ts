@@ -5,6 +5,8 @@ import { verifyJWT } from "../../../../../src/lib/auth";
 import { CreateParticipantRequest } from "@/lib/types";
 import { Prisma } from "@prisma/client";
 
+export const runtime = "nodejs";
+
 export async function GET(request: NextRequest) {
   try {
     const authHeader = request.headers.get("authorization");

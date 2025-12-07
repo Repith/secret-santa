@@ -4,6 +4,8 @@ import { prisma } from "@/lib/prisma";
 import { verifyPassword } from "@/lib/bcrypt";
 import { AdminLoginRequest, AdminLoginResponse } from "@/lib/types";
 
+export const runtime = "nodejs";
+
 export async function POST(request: NextRequest) {
   try {
     const body: AdminLoginRequest = await request.json();

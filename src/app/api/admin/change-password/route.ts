@@ -1,12 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { verifyJWT } from "@/lib/auth";
+
 import { hashPassword, verifyPassword } from "@/lib/bcrypt";
 import {
   AdminChangePasswordRequest,
   AdminChangePasswordResponse,
 } from "@/lib/types";
 import { Admin } from "@prisma/client";
+
+export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
   try {

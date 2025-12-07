@@ -4,6 +4,8 @@ import { writeFile, mkdir } from "fs/promises";
 import { join } from "path";
 import { verifyJWT } from "@/lib/auth";
 
+export const runtime = "nodejs";
+
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/gif", "image/webp"];
 const MAX_SIZE = 5 * 1024 * 1024; // 5MB
 
