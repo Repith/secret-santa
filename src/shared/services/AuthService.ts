@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { AuthResponse, RequestTokenResponse } from "../types";
 
 export class AuthService {

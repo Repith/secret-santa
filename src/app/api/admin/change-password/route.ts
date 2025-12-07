@@ -3,10 +3,10 @@ import { prisma } from "@/lib/prisma";
 import { verifyJWT } from "@/lib/auth";
 import { hashPassword, verifyPassword } from "@/lib/bcrypt";
 import {
-  Admin,
   AdminChangePasswordRequest,
   AdminChangePasswordResponse,
 } from "@/lib/types";
+import { Admin } from "@prisma/client";
 
 export async function POST(request: NextRequest) {
   try {
