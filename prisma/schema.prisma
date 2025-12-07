@@ -1,0 +1,104 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Event {
+  id           String @id
+  name         String
+  date         DateTime
+  adminId      String
+  admin        Admin @relation(fields: [adminId], references: [id])
+  participants Participant[]
+  draws        Draw[]
+}
+
+model Participant {
+  id        String @id
+  name      String
+  email     String? @unique
+  avatar    String?
+  wanted    WantedHint[]
+  unwanted  UnwantedHint[]
+
+  eventId   String
+  event     Event @relation(fields: [eventId], references: [id])
+
+  loginTokens       LoginToken[]
+
+  hasDrawn Boolean @default(false)
+
+  drawsAsGiver    Draw[] @relation("DrawGiver")
+  drawsAsReceiver Draw[] @relation("DrawReceiver")
+
+  exclusionsGiven    Exclusion[] @relation("ExclusionGiver")
+  exclusionsReceived Exclusion[] @relation("ExclusionExcluded")
+}
+
+model LoginToken {
+  id            String @id
+  token         String @unique
+  participantId String
+  participant   Participant @relation(fields: [participantId], references: [id])
+  expiresAt     DateTime
+  createdAt     DateTime @default(now())
+  usedAt        DateTime?
+}
+
+model Admin {
+  id            String @id
+  username      String @unique
+  password_hash String
+  name          String
+  events        Event[]
+}
+
+model Draw {
+  id         String @id @default(cuid())
+  eventId    String
+  event      Event @relation(fields: [eventId], references: [id])
+
+  giverId    String
+  giver      Participant @relation("DrawGiver", fields: [giverId], references: [id])
+
+  receiverId String
+  receiver   Participant @relation("DrawReceiver", fields: [receiverId], references: [id])
+
+  createdAt  DateTime @default(now())
+
+  @@unique([eventId, giverId])
+  @@unique([eventId, receiverId])
+}
+
+model Exclusion {
+  id         String @id @default(cuid())
+  giverId    String
+  giver      Participant @relation("ExclusionGiver", fields: [giverId], references: [id])
+  excludedId String
+  excluded   Participant @relation("ExclusionExcluded", fields: [excludedId], references: [id])
+
+  @@unique([giverId, excludedId])
+}
+
+
+model WantedHint {
+  id            String @id @default(cuid())
+  participantId String
+  participant   Participant @relation(fields: [participantId], references: [id])
+  hint          String
+
+  @@index([participantId])
+}
+
+model UnwantedHint {
+  id            String @id @default(cuid())
+  participantId String
+  participant   Participant @relation(fields: [participantId], references: [id])
+  hint          String
+
+  @@index([participantId])
+}
