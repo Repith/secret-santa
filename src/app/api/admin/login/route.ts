@@ -5,6 +5,7 @@ import { verifyPassword } from "@/lib/bcrypt";
 import { AdminLoginRequest, AdminLoginResponse } from "@/lib/types";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function POST(request: NextRequest) {
   try {

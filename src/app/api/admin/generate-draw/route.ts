@@ -5,6 +5,7 @@ import { verifyJWT } from "../../../../../src/lib/auth";
 import { GenerateDrawRequest, GenerateDrawResponse } from "@/lib/types";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function POST(request: NextRequest) {
   try {

@@ -6,6 +6,7 @@ import { CreateParticipantRequest } from "@/lib/types";
 import { Prisma } from "@prisma/client";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function GET(request: NextRequest) {
   try {

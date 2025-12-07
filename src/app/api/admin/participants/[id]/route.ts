@@ -5,6 +5,7 @@ import { verifyJWT } from "@/lib/auth";
 import { UpdateParticipantRequest } from "@/lib/types";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function PUT(
   request: NextRequest,

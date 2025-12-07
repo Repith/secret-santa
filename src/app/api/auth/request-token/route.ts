@@ -4,6 +4,7 @@ import { generateToken } from "../../../../../src/lib/auth";
 import { sendEmail } from "../../../../../src/lib/email";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function POST(request: NextRequest) {
   try {
